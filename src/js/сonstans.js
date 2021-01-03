@@ -1,6 +1,7 @@
 export default {
     isSave: false,
     startGame: false,
+    voice: false,
     cells: [],
     numbersOfMoves: 0,
     sec: 0,

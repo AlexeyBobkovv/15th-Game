@@ -57,11 +57,22 @@ function createBottomBtns() {
 
       appConstans.startGame = false;
     });
-
      // кнопка вкл/выкл звук
     appConstans.voiceBtn.className = 'down_btn';
     appConstans.voiceBtn.innerHTML = createIconHTML("volume_off");
     appConstans.fieldBottom.appendChild(appConstans.voiceBtn);
+
+    appConstans.voiceBtn.addEventListener('click', ()=> { 
+
+      appConstans.voice = !appConstans.voice
+
+      if(appConstans.voice) {
+        appConstans.voiceBtn.innerHTML = createIconHTML("volume_up");
+      } else {
+        appConstans.voiceBtn.innerHTML = createIconHTML("volume_off");
+      }
+
+    });
 
      // кнопка выбора поля
     appConstans.chooseFieldBtn.className = 'down_btn';

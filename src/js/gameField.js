@@ -69,6 +69,7 @@ import {move, dragAndDrop} from './cellMove'
 
             cell.addEventListener('mousedown', () => {
                 dragAndDrop(i);
+                console.log('vizov')
             });
         }
     console.log(appConstans.cells)

@@ -23,6 +23,8 @@ function addZero(n) {
      return (parseInt(n, 10) < 10 ? '0' : '') + n;
 }
 
+
+
 function setEveryMove(){
      
      appConstans.moveCounter.innerHTML = `Moves: ${(appConstans.numbersOfMoves)}`
@@ -52,5 +54,5 @@ function createUpperFunc() {
 
 showTime() 
 
-export {setEveryMove, createUpperFunc};
+export {setEveryMove, createUpperFunc, showTime};
 

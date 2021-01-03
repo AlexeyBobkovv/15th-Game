@@ -31,14 +31,16 @@ function move(index) {
         return cell.value === cell.top * 4 + cell.left;
     });
 
-    if(isFinished){ 
-     alert('you won');
-    }
+    
 
     appConstans.numbersOfMoves += 1; 
     setEveryMove()
 
     appConstans.startGame = true;
+
+    if(isFinished){ 
+        alert(`Ура! Вы решили головоломку за ${(appConstans.gameTime.innerHTML)} и ${(appConstans.numbersOfMoves)} ходов`);
+    }
 }
 
 function dragAndDrop(index) {
@@ -120,13 +122,15 @@ function dragAndDrop(index) {
         
             return cell.value === cell.top * 4 + cell.left;
         });
-    
-        if(isFinished){ 
-         alert('you won');
-        }
 
         appConstans.numbersOfMoves += 1; 
         setEveryMove()
+
+        appConstans.startGame = true;
+    
+        if(isFinished){ 
+         alert(`Ура! Вы решили головоломку за ${(appConstans.gameTime.innerHTML)} и ${(appConstans.numbersOfMoves)} ходов`);
+        }       
     }
     
     emptyCell.element.addEventListener('dragover', dragOver);
