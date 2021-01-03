@@ -1,10 +1,20 @@
 export default {
     isSave: false,
+    startGame: false,
     cells: [],
     numbersOfMoves: 0,
     sec: 0,
     min: 0,
-    cellSize: 100,
+    cellSize: 25,
+    fieldSize: 4,
+    sizes: {
+        3: [[...Array(8).keys()], 33.3, 250],
+        4: [[...Array(15).keys()], 25, 200],
+        5: [[...Array(24).keys()], 20, 150],
+        6: [[...Array(35).keys()], 16.67, 100],
+        7: [[...Array(48).keys()], 14.29, 50],
+        8: [[...Array(63).keys()], 12.5, 0]
+    },
 
     // DOM
     main: document.querySelector('#main'), // главное окно

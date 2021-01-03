@@ -1,28 +1,22 @@
 import appConstans  from './сonstans'
 
-let ret = 0; // хня что бы работал таймер,земенить кнопкой
-
 function showTime() {   
      setTime();
 
      setTimeout(showTime, 1000);
 }
 
-function setTime() {
-     if(localStorage.getItem('btnToSave') !== null) { // сделать условие для нажатия кнопки
-          appConstans.sec = JSON.parse(localStorage.getItem('time'))[1];
-          appConstans.min = JSON.parse(localStorage.getItem('time'))[0];
-     } else {
+function setTime() { // добавить начало времени с нажатия по элементу
           if (appConstans.sec === 60) {
                appConstans.sec = 0;
                appConstans.min++;
           }
              
           appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
-        
-             
-          appConstans.sec += 1;           
-     }
+          
+          if(appConstans.startGame) {
+          appConstans.sec += 1; 
+          }                   
 }
    
 function addZero(n) {

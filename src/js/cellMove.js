@@ -1,5 +1,5 @@
 import appConstans from './сonstans'
-import { setEveryMove } from './upperTimerCounter';
+import { setEveryMove, } from './upperTimerCounter';
 
 function move(index) {
     const cell = appConstans.cells[index];
@@ -11,11 +11,11 @@ function move(index) {
 
     if(leftDiff + topDiff > 1) {return}
     
-    cell.element.style.left = `${emptyCell.left * appConstans.cellSize}px`;
-    cell.element.style.top = `${emptyCell.top * appConstans.cellSize}px`;
+    cell.element.style.left = `${emptyCell.left * appConstans.cellSize}%`;
+    cell.element.style.top = `${emptyCell.top * appConstans.cellSize}%`;
 
-    emptyCell.element.style.left = `${cell.left * appConstans.cellSize}px`;
-    emptyCell.element.style.top = `${cell.top * appConstans.cellSize}px`;
+    emptyCell.element.style.left = `${cell.left * appConstans.cellSize}%`;
+    emptyCell.element.style.top = `${cell.top * appConstans.cellSize}%`;
 
     const emptyLeft = emptyCell.left;
     const emptyTop = emptyCell.top;
@@ -37,6 +37,8 @@ function move(index) {
 
     appConstans.numbersOfMoves += 1; 
     setEveryMove()
+
+    appConstans.startGame = true;
 }
 
 function dragAndDrop(index) {
@@ -97,11 +99,11 @@ function dragAndDrop(index) {
 
         console.log(emptyCell.left, emptyCell.top)
 
-        cell.element.style.left = `${emptyCell.left * appConstans.cellSize}px`;
-        cell.element.style.top = `${emptyCell.top * appConstans.cellSize}px`;
+        cell.element.style.left = `${emptyCell.left * appConstans.cellSize}%`;
+        cell.element.style.top = `${emptyCell.top * appConstans.cellSize}%`;
 
-        emptyCell.element.style.left = `${cell.left * appConstans.cellSize}px`;
-        emptyCell.element.style.top = `${cell.top * appConstans.cellSize}px`;
+        emptyCell.element.style.left = `${cell.left * appConstans.cellSize}%`;
+        emptyCell.element.style.top = `${cell.top * appConstans.cellSize}%`;
 
         console.log(emptyCell.left, emptyCell.top)
         
