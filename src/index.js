@@ -5,10 +5,15 @@ require('./styles/index.scss')
 import { createUpperFunc, setEveryMove } from './js/upperTimerCounter'
 import { createCells, createSave } from './js/gameField'
 import { createBottomBtns } from './js/bottomBtns'
+import { createRecordField } from './js/records'
 import  appConstans  from './js/сonstans'
+
+appConstans.main.className = 'main';
+appConstans.game.append(appConstans.main)
 
 createUpperFunc();
 createBottomBtns();
+createRecordField();
 
 if (localStorage.getItem('btnToSave') !== null) { 
     createSave();
@@ -21,4 +26,3 @@ if (localStorage.getItem('btnToSave') !== null) {
 } else {
     createCells();
 }
-

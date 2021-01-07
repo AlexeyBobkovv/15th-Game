@@ -5,10 +5,32 @@ body {
     font-family: $font-family;
 }
 
-#main {
-   display: block; 
-   position: relative;
-   top: 120px;
+#game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.record {
+    display: flex; 
+    flex-direction: column;
+
+    font-size: 30px;
+
+    margin-left: 20px;
+}
+
+.recordRow {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.recordColumn {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+    align-items: center;
 }
 
 .field_top { 

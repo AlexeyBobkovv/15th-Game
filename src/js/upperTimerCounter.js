@@ -1,4 +1,5 @@
 import appConstans  from './сonstans'
+import { addNewRecord } from './records'
 
 function showTime() {   
      setTime();
@@ -34,25 +35,28 @@ function setEveryMove(){
 function createUpperFunc() {
 
      appConstans.fieldTop.className = 'field_top';
-     appConstans.main.appendChild(appConstans.fieldTop);
+     appConstans.main.append(appConstans.fieldTop);
  
      appConstans.gameTime.className = 'gametime';
-     appConstans.fieldTop.appendChild(appConstans.gameTime);
+     appConstans.fieldTop.append(appConstans.gameTime);
 
      appConstans.pauseBtn.className = 'pausebtn';
-     appConstans.fieldTop.appendChild(appConstans.pauseBtn);
+     appConstans.fieldTop.append(appConstans.pauseBtn);
+     appConstans.pauseBtn.addEventListener('click', () => {
+          addNewRecord();
+      }); 
  
      // moves
      appConstans.moveCounter.className = 'movecounter';
-     appConstans.fieldTop.appendChild(appConstans.moveCounter);
+     appConstans.fieldTop.append(appConstans.moveCounter);
      
      appConstans.field.className = 'field';
-     appConstans.main.appendChild(appConstans.field);
+     appConstans.main.append(appConstans.field);
 
      setEveryMove()
 }
 
 showTime() 
 
-export {setEveryMove, createUpperFunc, showTime};
+export {setEveryMove, createUpperFunc, showTime, addZero};
 

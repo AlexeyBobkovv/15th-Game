@@ -1,5 +1,8 @@
 import appConstans from './сonstans'
 import { setEveryMove, } from './upperTimerCounter';
+import { addNewRecord } from './records'
+
+const sound = new Audio('/src/audio/movingcell.mp3');
 
 function move(index) {
     const cell = appConstans.cells[index];
@@ -31,7 +34,12 @@ function move(index) {
         return cell.value === cell.top * 4 + cell.left;
     });
 
-    
+    if (appConstans.voice) {
+        setTimeout(() => {
+            sound.play();
+            console.log('right')
+        }, 0);
+    }
 
     appConstans.numbersOfMoves += 1; 
     setEveryMove()
@@ -40,6 +48,7 @@ function move(index) {
 
     if(isFinished){ 
         alert(`Ура! Вы решили головоломку за ${(appConstans.gameTime.innerHTML)} и ${(appConstans.numbersOfMoves)} ходов`);
+        addNewRecord();
     }
 }
 
@@ -65,9 +74,11 @@ function dragAndDrop(index) {
         setTimeout(() => {
             cell.element.classList.add('hide');
         }, 0)
+        console.log('start')
     };
 
     const dragEnd = function () {
+        console.log('end')
         cell.element.classList.remove('hide');
 
         ++end;
@@ -78,10 +89,12 @@ function dragAndDrop(index) {
     }
 
     const dragOver = function (e) {
+        console.log('over')
        e.preventDefault();
     }
 
     const dragEnter = function (e) {
+        console.log('enter')
         e.preventDefault();
         emptyCell.element.classList.add('hovered');
     }

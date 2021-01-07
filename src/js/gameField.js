@@ -1,5 +1,6 @@
 import  appConstans  from './сonstans';
 import {move, dragAndDrop} from './cellMove'
+import  g  from '../images/1.jpg'
 
 // создание клеток document.
     function createCells() { 
@@ -16,7 +17,7 @@ import {move, dragAndDrop} from './cellMove'
         appConstans.field.style.width = `${(100 * appConstans.fieldSize)}px`
         appConstans.field.style.height = `${(100 * appConstans.fieldSize)}px`
 
-        appConstans.main.style.top = `${(appConstans.sizes[appConstans.fieldSize][2])}px`
+        appConstans.game.style.height = `${(appConstans.sizes[appConstans.fieldSize][2])}px`
 
         const emptyCell = document.createElement('div');
         emptyCell.className = 'emptycell';
@@ -57,9 +58,22 @@ import {move, dragAndDrop} from './cellMove'
                 top: top,
                 element: cell
             })
-    
+
+            
+            
+            cell.style.backgroundImage = `url(${g})`;;
+            cell.style.backgroundSize = appConstans.field.style.height;
+        
+            cell.style.width = `${appConstans.cellSize}%`;
+            cell.style.height = `${appConstans.cellSize}%`;
+        
             cell.style.left = `${left * appConstans.cellSize}%`;
-            cell.style.top = `${top * appConstans.cellSize}%`
+            cell.style.top = `${top * appConstans.cellSize}%`;
+        
+            let imageOffsetLeft = `${100 / (appConstans.fieldSize - 1) * ((value - 1) % appConstans.fieldSize)}%`;
+            cell.style.backgroundPositionX = imageOffsetLeft;
+            let imageOffsetTop = `${100 / (appConstans.fieldSize - 1) * Math.trunc((value - 1) / appConstans.fieldSize)}%`;
+            cell.style.backgroundPositionY = imageOffsetTop;
 
             appConstans.field.append(cell);
 

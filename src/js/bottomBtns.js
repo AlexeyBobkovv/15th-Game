@@ -6,7 +6,7 @@ function createBottomBtns() {
 
     // нижняя часть для кнопок
     appConstans.fieldBottom.className = 'field_bottom';
-    appConstans.main.appendChild(appConstans.fieldBottom);
+    appConstans.main.append(appConstans.fieldBottom);
 
 
     const createIconHTML = (icon_name) => {
@@ -16,7 +16,7 @@ function createBottomBtns() {
      // кнопка заново
     appConstans.againBtn.className = 'down_btn';
     appConstans.againBtn.innerHTML = createIconHTML("replay");
-    appConstans.fieldBottom.appendChild(appConstans.againBtn);
+    appConstans.fieldBottom.append(appConstans.againBtn);
 
     appConstans.againBtn.addEventListener('click', () => {
         appConstans.cells = []
@@ -37,7 +37,7 @@ function createBottomBtns() {
     // кнопка сохранения
     appConstans.saveBtn.className = 'down_btn';
     appConstans.saveBtn.innerHTML = createIconHTML("save");
-    appConstans.fieldBottom.appendChild(appConstans.saveBtn);
+    appConstans.fieldBottom.append(appConstans.saveBtn);
 
     appConstans.saveBtn.addEventListener('click', ()=> {    
     //  localStorage.setItem('image', image);
@@ -60,7 +60,7 @@ function createBottomBtns() {
      // кнопка вкл/выкл звук
     appConstans.voiceBtn.className = 'down_btn';
     appConstans.voiceBtn.innerHTML = createIconHTML("volume_off");
-    appConstans.fieldBottom.appendChild(appConstans.voiceBtn);
+    appConstans.fieldBottom.append(appConstans.voiceBtn);
 
     appConstans.voiceBtn.addEventListener('click', ()=> { 
 
@@ -77,7 +77,7 @@ function createBottomBtns() {
      // кнопка выбора поля
     appConstans.chooseFieldBtn.className = 'down_btn';
     appConstans.chooseFieldBtn.innerHTML = createIconHTML("border_all");
-    appConstans.fieldBottom.appendChild(appConstans.chooseFieldBtn);
+    appConstans.fieldBottom.append(appConstans.chooseFieldBtn);
 
     appConstans.chooseFieldBtn.addEventListener('click', ()=> {  
       
@@ -89,7 +89,7 @@ function createBottomBtns() {
         size.classList.add('down_size_btn');
         size.innerHTML = `${i} × ${i}`;
     
-        appConstans.fieldBottom.appendChild(size);
+        appConstans.fieldBottom.append(size);
     
         size.addEventListener('click', () => {
 
