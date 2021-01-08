@@ -75,7 +75,7 @@ module.exports = {
 
       // Images: Copy image files to build folder
       // Изображения: копировать файлы в директорию для файлов сборки
-      { test: /\.(?:ico|gif|png|jpg|jpeg")$/i, type: 'asset/resource' },
+      { test: /\.(?:ico|gif|png|jpg|jpeg|mp3")$/i, type: 'asset/resource' },
 
       // Fonts and SVGs: Inline files
       // Шрифты и SVG

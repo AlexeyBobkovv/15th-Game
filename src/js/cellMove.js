@@ -2,8 +2,6 @@ import appConstans from './сonstans'
 import { setEveryMove, } from './upperTimerCounter';
 import { addNewRecord } from './records'
 
-const sound = new Audio('/src/audio/movingcell.mp3');
-
 function move(index) {
     const cell = appConstans.cells[index];
     console.log(cell)
@@ -35,10 +33,9 @@ function move(index) {
     });
 
     if (appConstans.voice) {
-        setTimeout(() => {
-            sound.play();
-            console.log('right')
-        }, 0);
+        var audio = new Audio();
+        audio.src = './assets/audio/movingcell.mp3'; 
+        audio.autoplay = true; 
     }
 
     appConstans.numbersOfMoves += 1; 
@@ -108,6 +105,12 @@ function dragAndDrop(index) {
 
         if (drop > 1) {
         return;
+        }
+
+        if (appConstans.voice) {
+            var audio = new Audio();
+            audio.src = './assets/audio/pop.mp3'; 
+            audio.autoplay = true; 
         }
 
         emptyCell.element.classList.remove('hovered');

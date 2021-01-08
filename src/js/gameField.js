@@ -1,6 +1,5 @@
 import  appConstans  from './сonstans';
 import {move, dragAndDrop} from './cellMove'
-import  g  from '../images/1.jpg'
 
 // создание клеток document.
     function createCells() { 
@@ -43,11 +42,17 @@ import  g  from '../images/1.jpg'
 
         let numbers = appConstans.sizes[appConstans.fieldSize][0].sort(() => Math.random() - 0.5);
 
+        function getRandomInt(max) {
+            let number = Math.floor(Math.random() * Math.floor(max)) + 1;
+            return number;
+        }
+
+        let image = `./assets/images/${getRandomInt(11)}.jpg`
+
         for (let i = 1; i <= appConstans.fieldSize * appConstans.fieldSize - 1; i++) {
             const cell = document.createElement('div');
             cell.className = 'cell';
             const value = numbers[i - 1] + 1;
-            cell.innerHTML = value;
     
             const left = i % appConstans.fieldSize;
             const top = (i - left) / appConstans.fieldSize;
@@ -58,10 +63,8 @@ import  g  from '../images/1.jpg'
                 top: top,
                 element: cell
             })
-
             
-            
-            cell.style.backgroundImage = `url(${g})`;;
+            cell.style.backgroundImage = `url(${image})`;;
             cell.style.backgroundSize = appConstans.field.style.height;
         
             cell.style.width = `${appConstans.cellSize}%`;
