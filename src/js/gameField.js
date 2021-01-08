@@ -53,6 +53,7 @@ import {move, dragAndDrop} from './cellMove'
             const cell = document.createElement('div');
             cell.className = 'cell';
             const value = numbers[i - 1] + 1;
+            // cell.innerHTML = value;
     
             const left = i % appConstans.fieldSize;
             const top = (i - left) / appConstans.fieldSize;
@@ -89,7 +90,6 @@ import {move, dragAndDrop} from './cellMove'
                 console.log('vizov')
             });
         }
-    console.log(appConstans.cells)
 }
     
     function createSave() { 

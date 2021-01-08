@@ -14,9 +14,11 @@ function setTime() { // добавить начало времени с нажа
           }
              
           appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
-          
+          console.log('вызов ф-и')
           if(appConstans.startGame) {
+          console.log('if')
           appConstans.sec += 1; 
+          
           }                   
 }
    

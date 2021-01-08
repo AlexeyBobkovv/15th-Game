@@ -1,6 +1,7 @@
 import { createCells }  from './gameField'
 import appConstans from './сonstans'
 import { setEveryMove, showTime } from './upperTimerCounter';
+import { addZero } from './upperTimerCounter'
 
 function createBottomBtns() {
 
@@ -57,7 +58,7 @@ function createBottomBtns() {
 
       appConstans.startGame = false;
     });
-     // кнопка вкл/выкл звук
+
     appConstans.voiceBtn.className = 'down_btn';
     appConstans.voiceBtn.innerHTML = createIconHTML("volume_off");
     appConstans.fieldBottom.append(appConstans.voiceBtn);
@@ -74,7 +75,6 @@ function createBottomBtns() {
 
     });
 
-     // кнопка выбора поля
     appConstans.chooseFieldBtn.className = 'down_btn';
     appConstans.chooseFieldBtn.innerHTML = createIconHTML("border_all");
     appConstans.fieldBottom.append(appConstans.chooseFieldBtn);
@@ -93,13 +93,11 @@ function createBottomBtns() {
     
         size.addEventListener('click', () => {
 
-
           document.querySelectorAll('.down_size_btn').forEach(size => size.style.display = 'none');
 
           document.querySelectorAll('.down_btn').forEach(size => size.style.display = 'flex');
 
           appConstans.fieldSize = size.innerText.slice(0, 1);
-          console.log(appConstans.fieldSize)
 
           appConstans.cells = [];
           createCells()
@@ -112,7 +110,8 @@ function createBottomBtns() {
 
           appConstans.sec = 0;
           appConstans.min = 0;
-          showTime()
+
+          appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
         });
       }
     
