@@ -6,7 +6,10 @@ import {move, dragAndDrop} from './cellMove'
         appConstans.cellSize = appConstans.sizes[appConstans.fieldSize][1]
 
         if(appConstans.fieldSize == 3) {
-            appConstans.fieldTop.style.width = `${(375)}px`
+            appConstans.fieldTop.style.width = `${(520)}px`
+            appConstans.fieldBottom.style.width = `${(375)}px`
+        } else if(appConstans.fieldSize == 4) {
+            appConstans.fieldTop.style.width = `${(455)}px`
             appConstans.fieldBottom.style.width = `${(375)}px`
         } else {
             appConstans.fieldTop.style.width = `${(100 * appConstans.fieldSize)}px`

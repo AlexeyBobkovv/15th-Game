@@ -271,4 +271,4 @@ function dragAndDrop(index) {
     cell.element.addEventListener('dragend', dragEnd);
 }
 
-export {move, dragAndDrop}
+export {dragAndDrop}
