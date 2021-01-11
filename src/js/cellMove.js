@@ -15,7 +15,6 @@ document.addEventListener('keyup', () => {
     
             if(cell.top === emptyCell.top + 1 && cell.left === emptyCell.left) {
                 downCell = cell  
-                console.log(downCell) 
             }
         });
 
@@ -29,6 +28,11 @@ document.addEventListener('keyup', () => {
             emptyCell.top = downCell.top
    
             downCell.top = emptyTop;
+
+            appConstans.numbersOfMoves += 1; 
+            setEveryMove()
+    
+            appConstans.startGame = true;
         } catch (error) {
             return
         }
@@ -55,6 +59,11 @@ document.addEventListener('keyup', () => {
             emptyCell.top = upCell.top
    
             upCell.top = emptyTop;
+
+            appConstans.numbersOfMoves += 1; 
+            setEveryMove()
+    
+            appConstans.startGame = true;
         } catch (error) {
             return
         }
@@ -67,7 +76,6 @@ document.addEventListener('keyup', () => {
     
             if(cell.top === emptyCell.top && cell.left === emptyCell.left - 1) {
                 leftCell = cell  
-                console.log(leftCell)
             }
         });
 
@@ -81,6 +89,11 @@ document.addEventListener('keyup', () => {
             emptyCell.left = leftCell.left
    
             leftCell.left = emptyRight;
+
+            appConstans.numbersOfMoves += 1; 
+            setEveryMove()
+    
+            appConstans.startGame = true;
         } catch (error) {
             return
         }
@@ -106,6 +119,11 @@ document.addEventListener('keyup', () => {
             emptyCell.left = rightCell.left
    
             rightCell.left = emptyLeft;
+
+            appConstans.numbersOfMoves += 1; 
+            setEveryMove()
+    
+            appConstans.startGame = true;
         } catch (error) {
             return
         }
