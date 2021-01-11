@@ -2,10 +2,121 @@ import appConstans from './сonstans'
 import { setEveryMove, } from './upperTimerCounter';
 import { addNewRecord } from './records'
 
-function move(index) {
+document.addEventListener('keyup', () => {
+    const emptyCell = appConstans.cells[0];
+
+    switch (event.key) {
+
+        case 'ArrowUp':
+
+        let downCell
+
+        appConstans.cells.forEach(cell => {
+    
+            if(cell.top === emptyCell.top + 1 && cell.left === emptyCell.left) {
+                downCell = cell  
+                console.log(downCell) 
+            }
+        });
+
+        try {
+            downCell.element.style.top = `${emptyCell.top * appConstans.cellSize}%`;
+
+            emptyCell.element.style.top = `${downCell.top * appConstans.cellSize}%`;
+   
+            const emptyTop = emptyCell.top;
+   
+            emptyCell.top = downCell.top
+   
+            downCell.top = emptyTop;
+        } catch (error) {
+            return
+        }
+            break;
+
+        case 'ArrowDown':
+            
+        let upCell
+
+        appConstans.cells.forEach(cell => {
+    
+            if(cell.top === emptyCell.top - 1 && cell.left === emptyCell.left) {
+                upCell = cell  
+            }
+        });
+
+        try {
+            upCell.element.style.top = `${emptyCell.top * appConstans.cellSize}%`;
+
+            emptyCell.element.style.top = `${upCell.top * appConstans.cellSize}%`;
+   
+            const emptyTop = emptyCell.top;
+   
+            emptyCell.top = upCell.top
+   
+            upCell.top = emptyTop;
+        } catch (error) {
+            return
+        }
+            break;
+        
+        case 'ArrowRight':
+            let leftCell
+
+        appConstans.cells.forEach(cell => {
+    
+            if(cell.top === emptyCell.top && cell.left === emptyCell.left - 1) {
+                leftCell = cell  
+                console.log(leftCell)
+            }
+        });
+
+        try {
+            leftCell.element.style.left = `${emptyCell.left * appConstans.cellSize}%`;
+
+            emptyCell.element.style.left = `${leftCell.left * appConstans.cellSize}%`;
+   
+            const emptyRight = emptyCell.left;
+   
+            emptyCell.left = leftCell.left
+   
+            leftCell.left = emptyRight;
+        } catch (error) {
+            return
+        }
+            break;
+
+        case 'ArrowLeft':
+            let rightCell
+
+        appConstans.cells.forEach(cell => {
+    
+            if(cell.top === emptyCell.top && cell.left === emptyCell.left + 1) {
+                rightCell = cell  
+            }
+        });
+
+        try {
+            rightCell.element.style.left = `${emptyCell.left * appConstans.cellSize}%`;
+
+            emptyCell.element.style.left = `${rightCell.left * appConstans.cellSize}%`;
+   
+            const emptyLeft = emptyCell.left;
+   
+            emptyCell.left = rightCell.left
+   
+            rightCell.left = emptyLeft;
+        } catch (error) {
+            return
+        }
+            break;
+    }
+});
+
+/* function move(index) {
     const cell = appConstans.cells[index];
-    console.log(cell)
     const emptyCell = appConstans.cells[0]
+    console.log(cell, emptyCell.top)
 
     const leftDiff = Math.abs(emptyCell.left - cell.left);
     const topDiff = Math.abs(emptyCell.top - cell.top);
@@ -27,6 +138,8 @@ function move(index) {
     cell.left = emptyLeft;
     cell.top = emptyTop;
 
+    console.log(emptyCell.top)
+
     const isFinished = appConstans.cells.every(cell => {
         
         return cell.value === cell.top * 4 + cell.left;
@@ -47,7 +160,7 @@ function move(index) {
         alert(`Ура! Вы решили головоломку за ${(appConstans.gameTime.innerHTML)} и ${(appConstans.numbersOfMoves)} ходов`);
         addNewRecord();
     }
-}
+} */
 
 function dragAndDrop(index) {
     let drop = 0;

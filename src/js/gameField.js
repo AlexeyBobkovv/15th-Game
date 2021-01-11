@@ -53,7 +53,7 @@ import {move, dragAndDrop} from './cellMove'
             const cell = document.createElement('div');
             cell.className = 'cell';
             const value = numbers[i - 1] + 1;
-            // cell.innerHTML = value;
+            //cell.innerHTML = value;
     
             const left = i % appConstans.fieldSize;
             const top = (i - left) / appConstans.fieldSize;
@@ -80,15 +80,15 @@ import {move, dragAndDrop} from './cellMove'
             cell.style.backgroundPositionY = imageOffsetTop;
 
             appConstans.field.append(cell);
-
-            cell.addEventListener('click', () => { 
-                move(i);
-            })  
-
+             
+            /*cell.addEventListener('click', () => { 
+                move(i);      
+            }) */
+ 
             cell.addEventListener('mousedown', () => {
-                dragAndDrop(i);
-                console.log('vizov')
+                dragAndDrop(i); 
             });
+
         }
 }
     
@@ -155,9 +155,9 @@ import {move, dragAndDrop} from './cellMove'
 
             appConstans.field.append(cell);
 
-            cell.addEventListener('click', () => {
+            /* cell.addEventListener('click', () => {
                 move(i);
-            })  
+            }) */
      
             cell.addEventListener('mousedown', () => {
                 dragAndDrop(i);

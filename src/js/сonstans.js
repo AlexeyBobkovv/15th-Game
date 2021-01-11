@@ -16,9 +16,6 @@ export default {
         7: [[...Array(48).keys()], 14.29, 950],
         8: [[...Array(63).keys()], 12.5, 950]
     },
-    recordList: {
-       
-    },
 
     // DOM
     game: document.querySelector('#game'),

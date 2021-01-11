@@ -8,25 +8,22 @@ function showTime() {
 }
 
 function setTime() { // добавить начало времени с нажатия по элементу
-          if (appConstans.sec === 60) {
-               appConstans.sec = 0;
-               appConstans.min++;
-          }
+     if (appConstans.sec === 60) {
+          appConstans.sec = 0;
+          appConstans.min++;
+     }
              
-          appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
-          console.log('вызов ф-и')
-          if(appConstans.startGame) {
-          console.log('if')
+     appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
+         
+     if(appConstans.startGame) {
           appConstans.sec += 1; 
           
-          }                   
+     }                   
 }
    
 function addZero(n) {
      return (parseInt(n, 10) < 10 ? '0' : '') + n;
 }
-
-
 
 function setEveryMove(){
      
