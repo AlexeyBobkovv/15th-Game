@@ -29,10 +29,7 @@ document.addEventListener('keyup', () => {
    
             downCell.top = emptyTop;
 
-            appConstans.numbersOfMoves += 1; 
-            setEveryMove()
-    
-            appConstans.startGame = true;
+            callSoundandCount();
         } catch (error) {
             return
         }
@@ -60,10 +57,7 @@ document.addEventListener('keyup', () => {
    
             upCell.top = emptyTop;
 
-            appConstans.numbersOfMoves += 1; 
-            setEveryMove()
-    
-            appConstans.startGame = true;
+            callSoundandCount();
         } catch (error) {
             return
         }
@@ -90,10 +84,7 @@ document.addEventListener('keyup', () => {
    
             leftCell.left = emptyRight;
 
-            appConstans.numbersOfMoves += 1; 
-            setEveryMove()
-    
-            appConstans.startGame = true;
+            callSoundandCount();
         } catch (error) {
             return
         }
@@ -120,16 +111,37 @@ document.addEventListener('keyup', () => {
    
             rightCell.left = emptyLeft;
 
-            appConstans.numbersOfMoves += 1; 
-            setEveryMove()
-    
-            appConstans.startGame = true;
+            callSoundandCount();
         } catch (error) {
             return
         }
             break;
     }
 });
+
+function callSoundandCount() {
+    appConstans.numbersOfMoves += 1; 
+    setEveryMove()
+
+    if (appConstans.voice) {
+        var audio = new Audio();
+        audio.src = './assets/audio/movingcell.mp3'; 
+        audio.autoplay = true; 
+    }  
+
+    appConstans.startGame = true;
+
+    const isFinished = appConstans.cells.every(cell => {
+        if (cell.value === 0) {
+          return true;
+        }
+        return cell.value - 1 === cell.top * appConstans.fieldSize + cell.left;
+    });
+
+    if(isFinished){ 
+        alert(`Ура! Вы решили головоломку за ${(appConstans.min)} минут ${(appConstans.sec)} секунд за ${(appConstans.numbersOfMoves)} ходов`);
+    }  
+}
 
 /* function move(index) {
     const cell = appConstans.cells[index];
@@ -266,8 +278,10 @@ function dragAndDrop(index) {
         cell.top = emptyTop;
 
         const isFinished = appConstans.cells.every(cell => {
-        
-            return cell.value === cell.top * 4 + cell.left;
+            if (cell.value === 0) {
+              return true;
+            }
+            return cell.value - 1 === cell.top * appConstans.fieldSize + cell.left;
         });
 
         appConstans.numbersOfMoves += 1; 

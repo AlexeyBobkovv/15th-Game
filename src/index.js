@@ -13,7 +13,6 @@ appConstans.game.append(appConstans.main)
 
 createUpperFunc();
 createBottomBtns();
-createRecordField();
 
 if (localStorage.getItem('btnToSave') !== null) { 
     createSave();
@@ -25,4 +24,8 @@ if (localStorage.getItem('btnToSave') !== null) {
     setEveryMove();
 } else {
     createCells();
+}
+
+if (localStorage.getItem('bestResults') !== null) {
+    createRecordField();
 }

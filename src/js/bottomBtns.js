@@ -3,23 +3,23 @@ import appConstans from './сonstans'
 import { setEveryMove, showTime } from './upperTimerCounter';
 import { addZero } from './upperTimerCounter'
 
+const createIconHTML = (icon_name) => {
+  return `<i class="material-icons">${icon_name}</i>`;
+};
+
 function createBottomBtns() {
 
     // нижняя часть для кнопок
     appConstans.fieldBottom.className = 'field_bottom';
     appConstans.main.append(appConstans.fieldBottom);
 
-
-    const createIconHTML = (icon_name) => {
-        return `<i class="material-icons">${icon_name}</i>`;
-    };
-
      // кнопка заново
-    appConstans.againBtn.className = 'down_btn';
-    appConstans.againBtn.innerHTML = createIconHTML("replay");
-    appConstans.fieldBottom.append(appConstans.againBtn);
+    let againBtn = document.createElement('button');
+    againBtn.className = 'down_btn';
+    againBtn.innerHTML = createIconHTML("replay");
+    appConstans.fieldBottom.append(againBtn);
 
-    appConstans.againBtn.addEventListener('click', () => {
+    againBtn.addEventListener('click', () => {
         appConstans.cells = []
 
         createCells();
@@ -32,16 +32,19 @@ function createBottomBtns() {
 
         appConstans.sec = 0;
         appConstans.min = 0;
-        showTime()
+        
+        appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
     }); 
 
     // кнопка сохранения
-    appConstans.saveBtn.className = 'down_btn';
-    appConstans.saveBtn.innerHTML = createIconHTML("save");
-    appConstans.fieldBottom.append(appConstans.saveBtn);
 
-    appConstans.saveBtn.addEventListener('click', ()=> {    
-    //  localStorage.setItem('image', image);
+    let saveBtn = document.createElement('button');
+    saveBtn.className = 'down_btn';
+    saveBtn.innerHTML = createIconHTML("save");
+    appConstans.fieldBottom.append(saveBtn);
+
+    saveBtn.addEventListener('click', ()=> {    
+      localStorage.setItem('image', appConstans.image);
 
       localStorage.setItem('cells', JSON.stringify(appConstans.cells));
 
@@ -59,41 +62,83 @@ function createBottomBtns() {
       appConstans.startGame = false;
     });
 
-    appConstans.voiceBtn.className = 'down_btn';
-    appConstans.voiceBtn.innerHTML = createIconHTML("volume_off");
-    appConstans.fieldBottom.append(appConstans.voiceBtn);
+    let numVisibleBtn = document.createElement('button');
+    numVisibleBtn.className = 'down_btn';
+    numVisibleBtn.innerHTML = createIconHTML("visibility_off");
+    appConstans.fieldBottom.append(numVisibleBtn);
 
-    appConstans.voiceBtn.addEventListener('click', ()=> { 
+    numVisibleBtn.addEventListener('click', ()=> {  
+
+      appConstans.numbersVis = !appConstans.numbersVis
+
+      if(appConstans.numbersVis) {
+        numVisibleBtn.innerHTML = createIconHTML("visibility");
+
+        document.querySelectorAll('.cellnumber').forEach(num => num.style.display = 'flex');
+      } else {
+        numVisibleBtn.innerHTML = createIconHTML("visibility_off");
+
+        document.querySelectorAll('.cellnumber').forEach(num => num.style.display = 'none');
+      }
+    });
+
+    let voiceBtn = document.createElement('button');
+    voiceBtn.className = 'down_btn';
+    voiceBtn.innerHTML = createIconHTML("volume_off");
+    appConstans.fieldBottom.append(voiceBtn);
+
+    voiceBtn.addEventListener('click', ()=> { 
 
       appConstans.voice = !appConstans.voice
 
       if(appConstans.voice) {
-        appConstans.voiceBtn.innerHTML = createIconHTML("volume_up");
+        voiceBtn.innerHTML = createIconHTML("volume_up");
       } else {
-        appConstans.voiceBtn.innerHTML = createIconHTML("volume_off");
+        voiceBtn.innerHTML = createIconHTML("volume_off");
       }
 
     });
 
-    appConstans.chooseFieldBtn.className = 'down_btn';
-    appConstans.chooseFieldBtn.innerHTML = createIconHTML("border_all");
-    appConstans.fieldBottom.append(appConstans.chooseFieldBtn);
+    let autoResolution = document.createElement('button');
+    autoResolution.className = 'down_btn';
+    autoResolution.innerHTML = createIconHTML("outlined_flag");
+    appConstans.fieldBottom.append(autoResolution);
 
-    appConstans.chooseFieldBtn.addEventListener('click', ()=> {  
-      
-      document.querySelectorAll('.down_btn').forEach(size => size.style.display = 'none');
+    autoResolution.addEventListener('click', ()=> { 
+
+    });
+
+    let chooseFieldBtn  = document.createElement('button');
+    chooseFieldBtn.className = 'down_btn';
+    chooseFieldBtn.innerHTML = createIconHTML("border_all");
+    appConstans.fieldBottom.append(chooseFieldBtn);
+
+    chooseFieldBtn.addEventListener('click', ()=> {  
+      createChooseFieldBtns() 
+    });
+}
+
+function createChooseFieldBtns() {
+         
+    document.querySelectorAll('.down_btn').forEach(size => size.style.display = 'none');
 
       for (let i = 3; i <= 8; i++) {
         
         let size = document.createElement('div');
         size.classList.add('down_size_btn');
         size.innerHTML = `${i} × ${i}`;
-    
+        
+        appConstans.startGame = false;
+
         appConstans.fieldBottom.append(size);
     
         size.addEventListener('click', () => {
 
-          document.querySelectorAll('.down_size_btn').forEach(size => size.style.display = 'none');
+          for (let i = 0; i < 6; i++) {
+            document.querySelector('.down_size_btn').remove();
+          }
+
+          document.querySelector('.down_back_btn').remove();
 
           document.querySelectorAll('.down_btn').forEach(size => size.style.display = 'flex');
 
@@ -114,9 +159,21 @@ function createBottomBtns() {
           appConstans.gameTime.innerHTML = `Time: ${addZero(appConstans.min)}<span>:</span>${addZero(appConstans.sec)}` ;
         });
       }
-    
-  });
-}
 
+      let backBtn  = document.createElement('button');
+      backBtn.className = 'down_back_btn';
+      backBtn.innerHTML = createIconHTML("keyboard_return");
+      appConstans.fieldBottom.append(backBtn);
+
+      backBtn.addEventListener('click', () => {
+        for (let i = 0; i < 6; i++) {
+          document.querySelector('.down_size_btn').remove();
+        }
+
+        document.querySelector('.down_back_btn').remove();
+
+        document.querySelectorAll('.down_btn').forEach(size => size.style.display = 'flex');
+      });
+}
 
 export { createBottomBtns }
