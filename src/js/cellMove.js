@@ -1,8 +1,11 @@
 import appConstans from './сonstans'
 import { setEveryMove, } from './upperTimerCounter';
-import { addNewRecord } from './records'
+import { addNewRecord, createRecordField } from './records'
 
-document.addEventListener('keyup', () => {
+document.addEventListener('keyup', keyListener );
+
+    function keyListener() {
+    
     const emptyCell = appConstans.cells[0];
 
     switch (event.key) {
@@ -117,7 +120,7 @@ document.addEventListener('keyup', () => {
         }
             break;
     }
-});
+};
 
 function callSoundandCount() {
     appConstans.numbersOfMoves += 1; 
@@ -131,15 +134,17 @@ function callSoundandCount() {
 
     appConstans.startGame = true;
 
-    const isFinished = appConstans.cells.every(cell => {
+    appConstans.isFinished = appConstans.cells.every(cell => {
         if (cell.value === 0) {
           return true;
         }
         return cell.value - 1 === cell.top * appConstans.fieldSize + cell.left;
     });
 
-    if(isFinished){ 
-        alert(`Ура! Вы решили головоломку за ${(appConstans.min)} минут ${(appConstans.sec)} секунд за ${(appConstans.numbersOfMoves)} ходов`);
+    if(appConstans.isFinished){ 
+        alert(`Ура! Вы решили головоломку за ${(appConstans.min)} минут ${(appConstans.sec)} секунд и за ${(appConstans.numbersOfMoves)} ходов`);
+        addNewRecord()
+        createRecordField()
     }  
 }
 
@@ -277,10 +282,12 @@ function dragAndDrop(index) {
         cell.left = emptyLeft;
         cell.top = emptyTop;
 
-        const isFinished = appConstans.cells.every(cell => {
+        
+        appConstans.isFinished = appConstans.cells.every(cell => {
             if (cell.value === 0) {
               return true;
             }
+            console.log(cell.value - 1,appConstans.cells)  
             return cell.value - 1 === cell.top * appConstans.fieldSize + cell.left;
         });
 
@@ -289,8 +296,10 @@ function dragAndDrop(index) {
 
         appConstans.startGame = true;
     
-        if(isFinished){ 
-         alert(`Ура! Вы решили головоломку за ${(appConstans.gameTime.innerHTML)} и ${(appConstans.numbersOfMoves)} ходов`);
+        if(appConstans.isFinished){ 
+            alert(`Ура! Вы решили головоломку за ${(appConstans.min)} минут ${(appConstans.sec)} секунд и за ${(appConstans.numbersOfMoves)} ходов`);
+         addNewRecord()
+         createRecordField()
         }       
     }
     
@@ -303,4 +312,4 @@ function dragAndDrop(index) {
     cell.element.addEventListener('dragend', dragEnd);
 }
 
-export {dragAndDrop}
+export {dragAndDrop, keyListener}

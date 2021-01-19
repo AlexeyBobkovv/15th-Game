@@ -2,11 +2,17 @@
 require('./styles/index.scss')
 
 // Import of a JavaScript module
+import { createParl, heightAdjustment } from './js/parallax'
 import { createUpperFunc, setEveryMove } from './js/upperTimerCounter'
 import { createCells, createSave } from './js/gameField'
 import { createBottomBtns } from './js/bottomBtns'
 import { createRecordField } from './js/records'
 import  appConstans  from './js/сonstans'
+
+createParl();
+heightAdjustment();
+
+window.onresize = heightAdjustment
 
 appConstans.main.className = 'main';
 appConstans.game.append(appConstans.main)

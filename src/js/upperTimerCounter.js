@@ -1,5 +1,5 @@
 import appConstans  from './сonstans'
-import { addNewRecord } from './records'
+import { addNewRecord, createRecordField } from './records'
 
 function showTime() {   
      setTime();
@@ -39,10 +39,12 @@ function createUpperFunc() {
      appConstans.gameTime.className = 'gametime';
      appConstans.fieldTop.append(appConstans.gameTime);
 
-     appConstans.pauseBtn.className = 'pausebtn';
-     appConstans.fieldTop.append(appConstans.pauseBtn);
-     appConstans.pauseBtn.addEventListener('click', () => {
-          addNewRecord();
+     let pauseBtn = document.createElement('img')
+     pauseBtn.className = 'stop_btn';
+     pauseBtn.src = '/assets/images/bages/stop.png'
+     appConstans.fieldTop.append(pauseBtn);
+     pauseBtn.addEventListener('click', () => {
+          appConstans.startGame = false;
       }); 
  
      // moves

@@ -36,8 +36,8 @@ function createRecordField() {
     if (localStorage.getItem('bestResults') !== null) {
         let results = JSON.parse(localStorage.getItem('bestResults'));
     
-        if (results.length > 10) {
-          while (results.length !== 10) {
+        if (results.length > 5) {
+          while (results.length !== 5) {
             results.shift();
           }
         }

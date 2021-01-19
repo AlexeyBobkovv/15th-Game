@@ -1,5 +1,5 @@
 import  appConstans  from './сonstans';
-import {move, dragAndDrop} from './cellMove'
+import { dragAndDrop    } from './cellMove'
 
 // создание клеток document.
     function createCells() { 
@@ -7,13 +7,13 @@ import {move, dragAndDrop} from './cellMove'
 
         if(appConstans.fieldSize == 3) {
             appConstans.fieldTop.style.width = `${(520)}px`
-            appConstans.fieldBottom.style.width = `${(375)}px`
+            appConstans.fieldBottom.style.width = `${(731)}px`
         } else if(appConstans.fieldSize == 4) {
             appConstans.fieldTop.style.width = `${(455)}px`
-            appConstans.fieldBottom.style.width = `${(375)}px`
+            appConstans.fieldBottom.style.width = `${(731)}px`
         } else {
             appConstans.fieldTop.style.width = `${(100 * appConstans.fieldSize)}px`
-            appConstans.fieldBottom.style.width = `${(100 * appConstans.fieldSize)}px`
+            appConstans.fieldBottom.style.width = `${(140 * appConstans.fieldSize)}px`
         }
 
         appConstans.field.style.width = `${(100 * appConstans.fieldSize)}px`
@@ -34,6 +34,9 @@ import {move, dragAndDrop} from './cellMove'
         element: emptyCell
         })
         
+        emptyCell.style.width = `${appConstans.cellSize}%`;
+        emptyCell.style.height = `${appConstans.cellSize}%`        
+
         emptyCell.style.left = `${left * appConstans.cellSize}%`;
         emptyCell.style.top = `${top * appConstans.cellSize}%`
         
@@ -54,7 +57,7 @@ import {move, dragAndDrop} from './cellMove'
             return number;
         }
 
-         appConstans.image = `./assets/images/${getRandomInt(11)}.jpg`
+         appConstans.image = `./assets/images/${getRandomInt(15)}.jpg`
 
         for (let i = 1; i <= appConstans.fieldSize * appConstans.fieldSize - 1; i++) {
             const cell = document.createElement('div');
@@ -121,15 +124,16 @@ function checkResult(arr) {
         let savedFieldSize = localStorage.getItem('fieldSize')
         let savedCellsSize = localStorage.getItem('cellSize')
         let savedImage = localStorage.getItem('image')
-       
+        appConstans.image = localStorage.getItem('image')
+
         appConstans.cellSize = appConstans.sizes[savedFieldSize][1]
 
         if(savedFieldSize == 3) {
             appConstans.fieldTop.style.width = `${(520)}px`
-            appConstans.fieldBottom.style.width = `${(375)}px`
+            appConstans.fieldBottom.style.width = `${(731)}px`
         } else if(savedFieldSize == 4) {
             appConstans.fieldTop.style.width = `${(455)}px`
-            appConstans.fieldBottom.style.width = `${(375)}px`
+            appConstans.fieldBottom.style.width = `${(731)}px`
         } else {
             appConstans.fieldTop.style.width = `${(100 * savedFieldSize)}px`
             appConstans.fieldBottom.style.width = `${(100 * savedFieldSize)}px`

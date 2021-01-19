@@ -1,5 +1,6 @@
 export default {
     isSave: false,
+    isFinished: false,
     startGame: false,
     voice: false,
     numbersVis: false,
@@ -24,13 +25,11 @@ export default {
     main: document.createElement('main'), // главное окно
     fieldTop: document.createElement('div'), // верхняя часть прил.
     gameTime: document.createElement('time'),
-    pauseBtn: document.createElement('button'),
     moveCounter: document.createElement('div'),
     fieldBottom: document.createElement('div'), // нижняя часть для кнопок
     field: document.createElement('div'), // само поле
     recordField: document.createElement('div'),
     size: document.createElement('div'),
-
-    sound: new Audio('../assets/audio/movingcell.mp3')
+    numVisibleBtn: document.createElement('img')
 };
     
